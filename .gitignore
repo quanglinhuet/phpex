@@ -99,7 +99,6 @@ _modules/*
 *.iml
 
 # Netbeans
-nbproject/
 build/
 nbbuild/
 dist/
