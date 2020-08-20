@@ -9,7 +9,7 @@
     <link href="<?php echo base_url();?>/stint/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-color: #e9ecef;">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">

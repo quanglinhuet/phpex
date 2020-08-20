@@ -13,6 +13,7 @@
         </div>
         <hr class="my-4">
         <form action="<?= site_url('admin/add') ?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name='pre' value="<?=$pre?>" >
             <table>
                 <tr class="form-group">
                     <td style="width: 30%;">

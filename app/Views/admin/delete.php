@@ -5,7 +5,7 @@
                 <td style="width: 100%;">
                     <h3><?= $item['title'] ?></h3>
                 </td>
-                <td><a class="btn btn-primary" href="/" role="button">Back</a></td>
+                <td><a class="btn btn-primary" onclick="history.go(-1);" role="button">Back</a></td>
             </tr>
         </table>
         <hr class="my-4">
@@ -32,7 +32,8 @@
             <tr >
                 <form action="<?= site_url('admin/delete/'.$item['id']) ?>" method="post" enctype="multipart/form-data">
                     <td style="text-align: center;">
-                        <input name='id' type="hidden" value="<?=$item['id']?>">           
+                        <input name='id' type="hidden" value="<?=$item['id']?>"> 
+                        <input name='pre' type="hidden" value="<?=$pre?>">        
                         <input name='sure' type="hidden" value="yes">
                         <button type="submit" class="btn btn-outline-dark" style="margin-top:5px">Delete</button>
                     </td>

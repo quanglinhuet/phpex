@@ -19,7 +19,8 @@
         </div>
         <hr class="my-4">
         <form action="<?= site_url("admin/edit/").$item['id'] ?>" method="post" enctype="multipart/form-data">
-            <table>
+                <input type="hidden" name='pre' value="<?=$pre?>" >
+                <table>
                 <tr><input id='idedit' type="hidden" name="id" value="<?= $item['id']?>"></tr>
                 <tr class="form-group">
                     <td style="width: 30%;">

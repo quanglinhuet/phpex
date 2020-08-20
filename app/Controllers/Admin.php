@@ -3,8 +3,14 @@ use App\Models\AdminModel;
 class Admin extends BaseController
 {
 	function add(){
+		$data['pre']=base_url();
 		if ($_POST){
-            //$image= $_FILES['image'];
+			//$image= $_FILES['image'];
+			try {
+				$pre=$this->request->getVar('pre');
+			} catch (\Throwable $th) {
+				//throw $th;
+			}
 			$imagename=$_FILES['image']['name'];
 			if($imagename==''){
 				$imagename='anh-dai-dien-FB-200.jpg';
@@ -22,13 +28,14 @@ class Admin extends BaseController
 			if($imagename!='anh-dai-dien-FB-200.jpg')
 				$image->move("./upload");
 			$adminModel->insertData($data);
-            return redirect()->to(base_url());
+            return redirect()->to($pre);
         }
         else{
+			$data['pre']=$_SERVER['HTTP_REFERER'];
+		}
             echo view('templates/header');
-		    echo view('admin/add');
+		    echo view('admin/add',$data);
             echo view('templates/footer');
-        }
 	}
 	function show(){
 		$id=1;
@@ -54,9 +61,14 @@ class Admin extends BaseController
 		} catch (\Throwable $th) {
 			//throw $th;
 		}
-		
+		$data['pre']=base_url();
 		if($_POST){
-			$data=[];
+			$pre=base_url();
+			try {
+				$pre=$this->request->getVar('pre');
+			} catch (\Throwable $th) {
+				//throw $th;
+			}
 			$id=$this->request->getVar('id');
 			$data=[
 				'title'=>$this->request->getVar('title'),
@@ -69,7 +81,9 @@ class Admin extends BaseController
 			}
 			$data['status']=$this->request->getVar('status');
 			$md->updateData($id,$data);
-			return redirect()->to(base_url());
+			return redirect()->to($pre);
+		}else{
+			$data['pre']=$_SERVER['HTTP_REFERER'];
 		}
 
 		$data['item']=$md->find($id);
@@ -82,11 +96,19 @@ class Admin extends BaseController
 		$md = new AdminModel();
 		try{$id=$_GET['id'];}
 		catch (\Throwable $th){}
+		$data['pre']=base_url();
+		try {
+			$pre=$this->request->getVar('pre');
+		} catch (\Throwable $th) {
+			$pre=base_url();
+		}
 		if($_POST){
 			if($_POST['sure']='yes'){
 				$md->deleteData($_POST['id']);
 			}
-			return redirect()->to(base_url());
+			return redirect()->to($pre);
+		}else{
+			$data['pre']=$_SERVER['HTTP_REFERER'];
 		}
 		$md = new AdminModel();
 		$data['item']=$md->find($id);
