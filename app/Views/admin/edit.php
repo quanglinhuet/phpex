@@ -13,7 +13,7 @@
                         <h3 id="add_action_h3">Edit</h3>
                     </td>
                     <td id="back_btn" onclick="history.go(-1);"> <a  class="btn btn-secondary btn-sm active" role="button" aria-pressed="true" style="margin:5px;">Back</a> </td>
-                    <td id="show_btn" onclick="prevF()"> <a href="/admin/showpreview" class="btn btn-primary btn-sm active" role="button" aria-pressed="true" style="margin:5px;">Show</a> </td>
+                    <td id="show_btn" onclick="prevF()"> <a href="<?=base_url("/admin/showpreview")?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true" style="margin:5px;">Show</a> </td>
                 </tr>
             </table>
         </div>

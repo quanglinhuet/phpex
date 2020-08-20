@@ -36,7 +36,7 @@ $routes->get('/admin/add', 'Admin::add');
 $routes->get('/admin/edit/(:any)', 'Admin::edit/$1');
 $routes->get('/admin/delete/(:any)', 'Admin::delete/$1');
 $routes->get("/home", 'Pages::index');
-//$routes->get("(:any)", 'Pages::showme/$1');
+$routes->get("/about", 'Pages::showme/about');
 
 
 /**

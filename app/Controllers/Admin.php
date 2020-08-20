@@ -30,7 +30,13 @@ class Admin extends BaseController
             echo view('templates/footer');
         }
 	}
-	function show($id){
+	function show(){
+		$id=1;
+		try{
+			$id=$_GET['id'];
+		}
+		catch (\Throwable $th){
+		}
 		$md = new AdminModel();
 		$data['item']=$md->find($id);
 		echo view('templates/header');
@@ -38,9 +44,17 @@ class Admin extends BaseController
 		echo view('templates/footer');
 		
 	}
-	function edit($id){
+	function edit(){
+
 		$md = new AdminModel();
 		$primaryKey = 'id';
+		$id=null;
+		try {
+			$id=$_GET['id'];
+		} catch (\Throwable $th) {
+			//throw $th;
+		}
+		
 		if($_POST){
 			$data=[];
 			$id=$this->request->getVar('id');
@@ -63,8 +77,11 @@ class Admin extends BaseController
 		echo view('admin/edit',$data);
         echo view('templates/footer');
 	}
-	function delete($id){
+	function delete(){
+		$id=1;
 		$md = new AdminModel();
+		try{$id=$_GET['id'];}
+		catch (\Throwable $th){}
 		if($_POST){
 			if($_POST['sure']='yes'){
 				$md->deleteData($_POST['id']);
@@ -79,12 +96,16 @@ class Admin extends BaseController
 	}
 
 	function showpreview(){
-		$cookie=$_SERVER['HTTP_COOKIE'];
-		$data['item']=[
-			'title'=>$_COOKIE['titleadd'],
-			'description'=>$_COOKIE['descriptionadd'],
-			'image'=>$_COOKIE['imageadd']
-		];
+		$data=[];
+		try {
+			$data['item']=[
+				'title'=>$_COOKIE['titleadd'],
+				'description'=>$_COOKIE['descriptionadd'],
+				'image'=>$_COOKIE['imageadd']
+			];
+		} catch (\Throwable $th) {
+			//throw $th;
+		}
 		echo view('templates/header',$data);
 		echo view('admin/preview');
         echo view('templates/footer');

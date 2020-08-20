@@ -67,11 +67,11 @@
                         <td><?= $item['title'] ?></td>
                         <td style="text-align: center;vertical-align:middle"><?= $item['status'] ?></td>
                         <td style="text-align: center;vertical-align:middle">
-                            <a href="admin/show/<?= $item['id'] ?>">Show</a>
+                            <a href="admin/show?id=<?= $item['id'] ?>">Show</a>
                             <span>|</span>
-                            <a href="admin/edit/<?= $item['id'] ?>">Edit</a>
+                            <a href="admin/edit?id=<?= $item['id'] ?>">Edit</a>
                             <span>|</span>
-                            <a href="admin/delete/<?= $item['id'] ?>">Delete</a>
+                            <a href="admin/delete?id=<?= $item['id'] ?>">Delete</a>
                         </td>
                     </tr>
                 <?php } ?>

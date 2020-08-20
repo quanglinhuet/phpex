@@ -13,8 +13,12 @@ class Pages extends BaseController
 	}
 	public function index()
 	{
-		$rCookie=$this->entryview=$_COOKIE['row'];
-		if ($rCookie =='5'||$rCookie =='10'||$rCookie =='50'||$rCookie =='10000000') $this->entryview = $rCookie+0;
+		try {
+			$rCookie=$this->entryview=$_COOKIE['row'];
+			if ($rCookie =='5'||$rCookie =='10'||$rCookie =='50'||$rCookie =='10000000') $this->entryview = $rCookie+0;
+		} catch (\Throwable $th) {
+			//throw $th;
+		}
 		$data=[
 			'title'=>'list data',
 			'entryshow'=>$this->pagesModel->paginate($this->entryview,'group'),
